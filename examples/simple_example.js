@@ -1,23 +1,29 @@
-var dictionary = require('../lib/spell_checker').getInstance();
+var sp = require('../lib/spell_checker').getInstance();
 
-// load the dictionary with the provided index and spell checking data
-dictionary.initialize(
-  '../data/en_US/index.txt',
-  '../data/en_US/training.txt',
-  function() {
+sp.initialize(
 
-    // exists() checks to see if the dictionary knows about the word - is it valid?
-    console.log(dictionary.exists('pseudonym'));
-    console.log(dictionary.exists('fleurgendorfer'));
+  '../data/en_US/seed.txt',
+  '../data/en_US/training.txt', function() {
 
-    // suggest() spell checks the given word returning an ordered array
-    // of suggestions based off of training data probability
-    console.log(dictionary.suggest('kommissioner'));
-    console.log(dictionary.suggest('danse'));
+    console.log('Initialized!');
 
-    // analyze() will spell check a sentence
-    console.log(dictionary.analyze("The Pentagon said it would send ground-based THAAD missile-interceptor " +
-      "batteries to protect military bases on the island of Guam, a US territory some 3,380 kilometres (2,100 miles)" +
-      " southeast of North Korea and home to 6,000 American military personnel, submarines and bombers."))
+    // indicates whether or not the spell-checker knows the given word
+    console.log(sp.exists('hello'));
+    console.log(sp.exists('polymorphism'));
 
-});
+    /**
+     * Accepts a single word and will return an ordered Array, most probable to
+     * least probable, of suggested spelling corrections IF the given word has been
+     * mis-spelled.
+     */
+    console.log(sp.suggest('polymrphism'));
+
+    /**
+     * Will return an Object containing keys representing any misspelled
+     * words in the provided text along with an ordered Array of potential
+     * spelling corrections for each key.
+     */
+    console.log(sp.analyze('This sentense will havv a fiw speling errorrs.'));
+
+  }
+);

@@ -1,17 +1,50 @@
 wordsworth
 =========
 
-Basic spell-checker / spelling correcter module for Nodejs.
+Spell-checker / spelling correcter module for Nodejs based off of Peter Norvig's
+spelling corrector publication (http://norvig.com/spell-correct.html) and John Resig's
+instructions on string-based binary searching (http://ejohn.org/blog/revised-javascript-dictionary-search/).
 
-attribution
+Installation
 =========
+     npm install wordsworth
 
-http://ejohn.org/blog/revised-javascript-dictionary-search/
+Use
+=========
+The sample `/data/en_US/seed.txt` and `/data/en_US/training.txt` files are fairly large and as such have
+been compressed and provided in an archive located in `/data/`.  To run the examples, extract
+the contents of the archive into `/en_US`.
 
-https://github.com/jeresig/trie-js
+    var sp = require('wordsworth').getInstance();
 
-http://norvig.com/spell-correct.html
+    sp.initialize(
+
+      '../data/en_US/seed.txt',
+      '../data/en_US/training.txt', function() {
+
+        console.log('Initialized!');
+
+        // indicates whether or not the spell-checker knows the given word
+        console.log(sp.exists('hello'));
+        console.log(sp.exists('polymorphism'));
+
+        /**
+         * Accepts a single word and will return an ordered Array, most probable to
+         * least probable, of suggested spelling corrections IF the given word has been
+         * mis-spelled.
+         */
+        console.log(sp.suggest('polymrphism'));
+
+        /**
+         * Will return an Object containing keys representing any misspelled
+         * words in the provided text along with an ordered Array of potential
+         * spelling corrections for each key.
+         */
+        console.log(sp.analyze('This sentense will havv a fiw speling errorrs.'));
+
+      }
+    );
 
 license
-=========
-MIT
+-------
+[MIT License](http://mrmarbles.mit-license.org/ "Mit License")
