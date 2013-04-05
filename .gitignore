@@ -1,4 +1,4 @@
 *.iml
 .idea/
 node_modules/
-data/en_US/
+data/en_US/*
