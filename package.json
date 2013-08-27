@@ -2,7 +2,7 @@
   "author": "Brian Carr <bcarr14@gmail.com>",
   "name": "wordsworth",
   "description": "Spell-checker / spelling correcter module.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "http://github.com/mrmarbles/wordsworth.git"
@@ -18,9 +18,25 @@
     "mocha"  : ">=1.0.0",
     "should" : ">=0.6.0"
   },
+  "scripts": {
+    "test": "mocha test/ --reporter spec"
+  },
+  "contributors": [
+    {
+      "name": "Brian Carr",
+      "email": "bcarr14@gmail.com"
+    },
+    {
+      "name": "Erel Segal-Halevi",
+      "email": "erelsgl@gmail.com"
+    }
+  ],
   "keywords": [
     "spelling",
     "spell-check",
+    "spell check",
+    "spell",
+    "check",
     "spell correction",
     "dictionary",
     "words"
